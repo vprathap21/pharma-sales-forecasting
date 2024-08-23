@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/theme-provider";
+import { BackgroundBeams } from "@/components/ui/background-beams";
+import { DotBackgroundDemo } from "@/components/DotBackgroundDemo";
+import { SparklesCore } from "@/components/ui/sparkles";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +22,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      
+      <body className={`${inter.className} min-h-screen`}>
+      {/* <BackgroundBeams /> */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Make Header Sticky */}
+          
+          <div className="sticky top-0 z-50">
+            <Header />
+          </div>
+          <main>
+            {children}
+          </main>
+          <div className=" bottom-0">
+          {/* <Footer /> */}
+          </div>
+        
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
