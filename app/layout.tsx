@@ -40,7 +40,7 @@ export default function RootLayout({
             {children}
           </main>
           <div className=" bottom-0">
-          {/* <Footer /> */}
+          <Footer />
           </div>
         
         </ThemeProvider>

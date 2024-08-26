@@ -1,6 +1,7 @@
 import React from 'react';
 import { ModeToggle } from './ThemeToggle';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -16,7 +17,9 @@ const Header = () => {
           >
             <path d="M10 1a9 9 0 100 18 9 9 0 000-18zm3 9H7a1 1 0 000 2h6a1 1 0 000-2z"></path>
           </svg>
+          <Link href="/">
           <span>PharmaPredictor</span>
+          </Link>
         </div>
 
         {/* Right Side: Mode Toggle and Login */}
