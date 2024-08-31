@@ -24,6 +24,14 @@ const config = {
     extend: {
      
       keyframes: {
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
         scroll: {
           to: {
             transform: "translate(calc(-50% - 0.5rem))",

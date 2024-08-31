@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -10,6 +11,8 @@ import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import Link from "next/link";
 // import { BackgroundBeamsDemo } from "@/components/Bgdemo";
 import { BackgroundBeams } from "@/components/ui/background-beams";
+import { ButtonsCard } from "@/components/ui/ButtonCard";
+import { TailwindcssButton2, TailwindcssButtons } from "@/components/TailwindcssButtons";
 
 const CardComponent = ({ title, description, imageSrc, imageAlt }: any) => (
   <CardContainer className="inter-var">
@@ -33,6 +36,10 @@ const CardComponent = ({ title, description, imageSrc, imageAlt }: any) => (
 );
 
 export default function HomePage() {
+
+    const handleClick = () => {
+      console.log("Button card clicked!");
+    };
   return (
     <div className="min-h-screen dark:bg-neutral-950 antialiased">
       <BackgroundBeams />
@@ -46,10 +53,11 @@ export default function HomePage() {
           </p>
           <div className="relative z-10 mt-6">
             <Link href="/dashboard">
-              <Button className="px-6 py-3 rounded-lg cursor-pointer">Get Started</Button>
+            <TailwindcssButton2 />
             </Link>
+            
           </div>
-
+         
           <div className="flex justify-between mt-10 space-x-4 flex-wrap">
             <CardComponent
               title="Sales Analysis Insights"
@@ -106,8 +114,9 @@ export default function HomePage() {
 
       <section id="cta" className="container mx-auto py-16 text-center">
         <h2 className="text-4xl font-bold mb-8">Ready to Transform Your Sales Strategy?</h2>
-        <Button className="px-6 py-3 rounded-md">Request a Demo</Button>
+        <TailwindcssButtons />
       </section>
+     
     </div>
   );
 }

@@ -13,6 +13,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Predictions from "@/components/Predictions";
+import ForecastingSection from "@/components/ForecastingSection";
+import Inventory from "@/components/Inventory";
 
 export default function SidebarDemo() {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -64,7 +67,7 @@ export default function SidebarDemo() {
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-screen overflow-hidden"
+        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-[100%] overflow-hidden"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -137,8 +140,8 @@ const LogoIcon = () => {
 
 const Dashboard = ({ activeSection }: { activeSection: string }) => {
   return (
-    <div className="flex flex-1 overflow-y-auto">
-      <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-4 flex-1 w-full">
+    <div className="flex flex-1 overflow-y-auto ">
+      <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-4 flex-1 w-full min-h-screen">
         {activeSection === "dashboard" && (
           <div className="flex gap-4">
             {[...new Array(4)].map((_, i) => (
@@ -151,12 +154,12 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
         )}
 
         {activeSection === "insights" && (
-          <div className="h-auto antialiased">
+          <div className="h-auto antialiased min-h-screen">
             <section className="container mx-auto py-4">
               <h1 className="text-4xl font-bold mb-8 text-center text-white">
                 Sales Trends for Top 3 Most Sold Drugs
               </h1>
-              <div className=" grid grid-cols-2">
+              <div className="grid grid-cols-2">
                 <div className="shadow-lg rounded-lg overflow-hidden mx-2">
                   <h2 className="text-2xl font-semibold mb-4 text-center text-gray-200">
                     Monthly Sales Trends
@@ -191,21 +194,21 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
         )}
 
         {activeSection === "forecasting" && (
-          <div>
-            <h1 className="text-4xl font-bold mb-8">Forecasting Section</h1>
-            <p>Here you can view and manage forecasting data.</p>
+          <div className=" min-h-screen">
+            <h1 className="text-4xl font-bold mb-8 ">Forecasting Section</h1>
+            <ForecastingSection />
           </div>
         )}
 
         {activeSection === "inventory" && (
-          <div>
+          <div className="h-auto min-h-screen">
             <h1 className="text-4xl font-bold mb-8">Inventory Management</h1>
-            <p>Here you can manage your inventory and related insights.</p>
+            <Inventory activeSection={activeSection} />
           </div>
         )}
 
         {activeSection === "logout" && (
-          <div>
+          <div className="h-auto min-h-screen">
             <h1 className="text-4xl font-bold mb-8">Logout Section</h1>
             <p>Handle the logout process here.</p>
           </div>
@@ -214,3 +217,4 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
     </div>
   );
 };
+
