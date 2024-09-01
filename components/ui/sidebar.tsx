@@ -158,24 +158,30 @@ export const MobileSidebar = ({
 export const SidebarLink = ({
   link,
   className,
-  onClick, // Add onClick here
+  onClick, // Existing onClick prop
   ...props
 }: {
   link: Links;
   className?: string;
-  onClick?: () => void; // Make onClick optional
+  onClick?: () => void; // Existing onClick prop
   props?: LinkProps;
 }) => {
-  const { open, animate } = useSidebar();
-  
+  const { open, animate, setOpen } = useSidebar();
+
+  const handleClick = () => {
+    if (onClick) onClick(); // Call existing onClick if provided
+    if (!open) return; // Only close sidebar if it’s open
+    setOpen(false); // Close the sidebar
+  };
+
   return (
     <Link
       href={link.href}
       className={cn(
-        "flex items-center justify-start gap-2  group/sidebar py-2",
+        "flex items-center justify-start gap-2 group/sidebar py-2",
         className
       )}
-      onClick={onClick} // Apply the onClick here
+      onClick={handleClick} // Use the updated handleClick function
       {...props}
     >
       {link.icon}

@@ -10,11 +10,11 @@ export default function ForecastingSection() {
   const [predictions, setPredictions] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleDateChange = (e:any) => {
+  const handleDateChange = (e: any) => {
     setDate(e.target.value);
   };
 
-  const handlePredictionTypeChange = (e:any) => {
+  const handlePredictionTypeChange = (e: any) => {
     setPredictionType(e.target.value);
   };
 
@@ -33,10 +33,10 @@ export default function ForecastingSection() {
       });
 
       const data = await response.json();
-   
+
       setPredictions(data);
-      console.log(predictions)
-;      setLoading(false);
+      console.log(predictions);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching predictions:", error);
       setLoading(false);
@@ -44,28 +44,24 @@ export default function ForecastingSection() {
   };
 
   return (
-    <div className="p-8 bg-gray-100 dark:bg-neutral-900 rounded-lg shadow-lg w-full">
-      {/* <h1 className="text-3xl font-bold mb-6 text-center text-white">
-        Forecasting Section
-      </h1> */}
-
+    <div className="p-4 sm:p-8 bg-gray-100 dark:bg-neutral-900 rounded-lg shadow-lg w-full">
       <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
         <div className="flex flex-col w-full md:w-1/2">
-          <label className="text-white mb-2">Select Date:</label>
+          <label className="text-black dark:text-white mb-2">Select Date:</label>
           <input
             type="date"
             value={date}
             onChange={handleDateChange}
-            className="p-3 rounded-lg bg-gray-200 dark:bg-neutral-700 text-black dark:text-white"
+            className="p-3 rounded-lg bg-gray-200 dark:bg-neutral-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-neutral-400"
           />
         </div>
 
         <div className="flex flex-col w-full md:w-1/2">
-          <label className="text-white mb-2">Prediction Type:</label>
+          <label className="text-black dark:text-white mb-2">Prediction Type:</label>
           <select
             value={predictionType}
             onChange={handlePredictionTypeChange}
-            className="p-3 rounded-lg bg-gray-200 dark:bg-neutral-700 text-black dark:text-white"
+            className="p-3 rounded-lg bg-gray-200 dark:bg-neutral-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-neutral-400"
           >
             <option value="weekly">Weekly Sales</option>
             <option value="monthly">Monthly Sales</option>
@@ -85,7 +81,7 @@ export default function ForecastingSection() {
 
       {predictions && (
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4 text-white">Predictions:</h2>
+          <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Predictions:</h2>
           <div className="bg-white dark:bg-neutral-800 p-4 rounded-lg shadow-lg">
             <PredictionsTable predictions={(predictions as any)?.last_predictions} />
           </div>
