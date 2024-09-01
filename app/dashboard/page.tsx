@@ -1,7 +1,7 @@
 "use client";
 import dashboard3 from "@/public/dasboard1.jpg";
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "../../components/ui/sidebar";
+import { Sidebar, SidebarBody, SidebarLink, Links } from "../../components/ui/sidebar";
 import {
   IconChartBar,
   IconPackage,
@@ -70,7 +70,7 @@ export default function SidebarDemo() {
         "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-full overflow-hidden"
       )}
     >
-      <Sidebar open={open} setOpen={setOpen} className="w-full md:w-64">
+      <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10 p-4">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
