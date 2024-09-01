@@ -87,12 +87,12 @@ export default function ForecastingSection() {
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4 text-white">Predictions:</h2>
           <div className="bg-white dark:bg-neutral-800 p-4 rounded-lg shadow-lg">
-            <PredictionsTable predictions={predictions?.last_predictions} />
+            <PredictionsTable predictions={(predictions as any)?.last_predictions} />
           </div>
 
           {/* Add the interactive graph */}
           <div className="mt-8 w-full">
-            <PredictionGraph predictions={predictions?.trend_data} predictionType={predictionType} />
+            <PredictionGraph predictions={(predictions as any)?.trend_data} predictionType={predictionType} />
           </div>
         </div>
       )}
