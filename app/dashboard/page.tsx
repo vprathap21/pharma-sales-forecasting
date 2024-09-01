@@ -67,10 +67,10 @@ export default function SidebarDemo() {
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-[100%] overflow-hidden"
+        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-full overflow-hidden"
       )}
     >
-      <Sidebar open={open} setOpen={setOpen}>
+      <Sidebar open={open} setOpen={setOpen} className="w-full md:w-64">
         <SidebarBody className="justify-between gap-10 p-4">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
@@ -84,7 +84,7 @@ export default function SidebarDemo() {
               ))}
             </div>
           </div>
-          <div>
+          <div className="mt-4">
             <SidebarLink
               link={{
                 label: "User Profile",
@@ -140,10 +140,10 @@ const LogoIcon = () => {
 
 const Dashboard = ({ activeSection }: { activeSection: string }) => {
   return (
-    <div className="flex flex-1 overflow-y-auto ">
+    <div className="flex flex-1 flex-col md:flex-row overflow-y-auto ">
       <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-4 flex-1 w-full min-h-screen">
         {activeSection === "dashboard" && (
-          <div className="flex gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[...new Array(4)].map((_, i) => (
               <div
                 key={"first-array" + i}
@@ -155,12 +155,12 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
 
         {activeSection === "insights" && (
           <div className="h-auto antialiased min-h-screen">
-            <section className="container mx-auto py-4">
-              <h1 className="text-4xl font-bold mb-8 text-center text-white">
+            <section className="container mx-auto py-4 px-4 sm:px-6 md:px-8">
+              <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-white">
                 Sales Trends for Top 3 Most Sold Drugs
               </h1>
-              <div className="grid grid-cols-2">
-                <div className="shadow-lg rounded-lg overflow-hidden mx-2">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="shadow-lg rounded-lg overflow-hidden">
                   <h2 className="text-2xl font-semibold mb-4 text-center text-gray-200">
                     Monthly Sales Trends
                   </h2>
@@ -174,7 +174,7 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
                     ></iframe>
                   </div>
                 </div>
-                <div className="shadow-lg rounded-lg overflow-hidden mx-2">
+                <div className="shadow-lg rounded-lg overflow-hidden">
                   <h2 className="text-2xl font-semibold mb-4 text-center text-gray-200">
                     Yearly Sales Comparison
                   </h2>
@@ -194,22 +194,26 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
         )}
 
         {activeSection === "forecasting" && (
-          <div className=" min-h-screen">
-            <h1 className="text-4xl font-bold mb-8 ">Forecasting Section</h1>
+          <div className="min-h-screen px-4 sm:px-6 md:px-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">
+              Forecasting Section
+            </h1>
             <ForecastingSection />
           </div>
         )}
 
         {activeSection === "inventory" && (
-          <div className="h-auto min-h-screen">
-            <h1 className="text-4xl font-bold mb-8">Inventory Management</h1>
+          <div className="min-h-screen px-4 sm:px-6 md:px-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">
+              Inventory Management
+            </h1>
             <Inventory activeSection={activeSection} />
           </div>
         )}
 
         {activeSection === "logout" && (
-          <div className="h-auto min-h-screen">
-            <h1 className="text-4xl font-bold mb-8">Logout Section</h1>
+          <div className="min-h-screen px-4 sm:px-6 md:px-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">Logout Section</h1>
             <p>Handle the logout process here.</p>
           </div>
         )}
@@ -217,4 +221,3 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
     </div>
   );
 };
-

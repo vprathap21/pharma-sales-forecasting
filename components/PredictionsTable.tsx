@@ -1,16 +1,16 @@
 import React from "react";
 
-export default function PredictionsTable({ predictions }:any) {
+export default function PredictionsTable({ predictions }: any) {
   return (
     <div className="mt-8">
-      <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-lg">
-        <table className="min-w-full bg-white dark:bg-neutral-800 border border-black  dark:border-neutral-700 rounded-lg overflow-hidden">
+      <div className="bg-white dark:bg-neutral-800 p-4 md:p-6 rounded-lg shadow-lg overflow-x-auto">
+        <table className="min-w-full bg-white dark:bg-neutral-800 border border-black dark:border-neutral-700 rounded-lg overflow-hidden">
           <thead>
             <tr>
               {Object.keys(predictions).map((drug, index) => (
                 <th
                   key={index}
-                  className="border-2 border-gray-200 dark:border-neutral-700 py-3 pl-10 bg-gray-50 dark:bg-neutral-700 text-left text-sm font-bold text-gray-800 dark:text-gray-200"
+                  className="border-2 border-gray-200 dark:border-neutral-700 py-2 md:py-3 pl-4 md:pl-10 bg-gray-50 dark:bg-neutral-700 text-left text-xs md:text-sm font-bold text-gray-800 dark:text-gray-200"
                 >
                   {drug}
                 </th>
@@ -22,7 +22,7 @@ export default function PredictionsTable({ predictions }:any) {
               {Object.keys(predictions).map((drug, index) => (
                 <td
                   key={index}
-                  className="border border-gray-200 dark:border-neutral-700 py-3 px-2 text-sm text-gray-700 dark:text-gray-300"
+                  className="border border-gray-200 dark:border-neutral-700 py-2 md:py-3 px-2 text-xs md:text-sm text-gray-700 dark:text-gray-300"
                 >
                   {predictions[drug]}
                 </td>

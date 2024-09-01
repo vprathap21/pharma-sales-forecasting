@@ -9,25 +9,23 @@ import dashboard2 from "@/public/SalesTrendAnalysis2.png";
 import dashboard3 from "@/public/dasboard1.jpg";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import Link from "next/link";
-// import { BackgroundBeamsDemo } from "@/components/Bgdemo";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import { ButtonsCard } from "@/components/ui/ButtonCard";
 import { TailwindcssButton2, TailwindcssButtons } from "@/components/TailwindcssButtons";
 
 const CardComponent = ({ title, description, imageSrc, imageAlt }: any) => (
   <CardContainer className="inter-var">
-    <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[22rem] h-auto rounded-xl p-4 border">
+    <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[18rem] md:w-[20rem] h-auto rounded-lg p-3 md:p-4 border">
       <CardItem translateZ="50" className="text-center text-lg font-bold text-neutral-600 dark:text-white">
         {title}
       </CardItem>
       <CardItem as="p" translateZ="60" className="text-neutral-500 text-sm mt-2 dark:text-neutral-300">
         {description}
       </CardItem>
-      <CardItem translateZ="100" rotateX={20} rotateZ={-10} className="w-full mt-4">
-        <Image src={imageSrc} height="500" width="500" className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl" alt={imageAlt} />
+      <CardItem translateZ="100" rotateX={20} rotateZ={-10} className="w-full mt-3">
+        <Image src={imageSrc} height="400" width="400" className="h-40 w-full object-cover rounded-lg group-hover/card:shadow-xl" alt={imageAlt} />
       </CardItem>
-      <div className="flex justify-center items-center mt-8">
-        <CardItem translateZ={20} translateX={-40} as="button" className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white">
+      <div className="flex justify-center items-center mt-6">
+        <CardItem translateZ={20} translateX={-40} as="button" className="px-3 py-2 rounded-lg text-xs font-normal dark:text-white">
           Try now →
         </CardItem>
       </div>
@@ -37,28 +35,26 @@ const CardComponent = ({ title, description, imageSrc, imageAlt }: any) => (
 
 export default function HomePage() {
 
-    const handleClick = () => {
-      console.log("Button card clicked!");
-    };
+  
+
   return (
     <div className="min-h-screen dark:bg-neutral-950 antialiased">
       <BackgroundBeams />
-      <section className="container mx-auto py-24 flex flex-col md:flex-row justify-between items-center">
-        <div className="text-center w-full">
-          <h1 className="w-full relative z-10 text-md md:text-6xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">
+      <section className="container mx-auto py-10 md:py-20 flex flex-col justify-between items-center text-center px-4 sm:px-6 md:px-8">
+        <div className="w-full">
+          <h1 className="w-full relative z-10 text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">
             Transform Your Pharma Sales Strategy
           </h1>
-          <p className="text-neutral-500 max-w-xl mx-auto my-4 text-md relative z-10">
+          <p className="text-neutral-500 max-w-lg mx-auto my-4 text-sm md:text-md relative z-10">
             Utilize cutting-edge AI to forecast sales trends, optimize inventory, and enhance your revenue strategy.
           </p>
-          <div className="relative z-10 mt-6">
+          <div className="flex justify-center">
             <Link href="/dashboard">
-            <TailwindcssButton2 />
+              <TailwindcssButton2 />
             </Link>
-            
-          </div>
-         
-          <div className="flex justify-between mt-10 space-x-4 flex-wrap">
+            </div>
+
+          <div className="flex flex-wrap justify-center md:justify-between mt-8 md:mt-10 gap-4">
             <CardComponent
               title="Sales Analysis Insights"
               description="Dive deep into your sales data with powerful analysis tools to uncover trends and patterns."
@@ -81,14 +77,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="features" className="container mx-auto py-16">
-        <h2 className="text-4xl font-bold mb-8 text-center">Key Features</h2>
+      <section id="features" className="container mx-auto py-12 md:py-16 px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Key Features</h2>
         <FeaturesSectionDemo />
       </section>
 
-      <section id="benefits" className="container mx-auto py-16 text-center">
-        <h2 className="text-4xl font-bold mb-8">Why Choose Us?</h2>
-        <p className="mb-8 text-lg">
+      <section id="benefits" className="container mx-auto py-12 md:py-16 px-4 sm:px-6 md:px-8 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Why Choose Us?</h2>
+        <p className="mb-6 md:mb-8 text-sm md:text-lg">
           Our platform is designed to provide pharmaceutical companies with the insights they need to optimize sales and maximize revenue.
         </p>
         <InfiniteMovingCards
@@ -112,11 +108,12 @@ export default function HomePage() {
         />
       </section>
 
-      <section id="cta" className="container mx-auto py-16 text-center">
-        <h2 className="text-4xl font-bold mb-8">Ready to Transform Your Sales Strategy?</h2>
-        <TailwindcssButtons />
+      <section id="cta" className="container mx-auto py-12 md:py-16 px-4 sm:px-6 md:px-8 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Ready to Transform Your Sales Strategy?</h2>
+        <div className="flex justify-center">
+          <TailwindcssButtons />
+        </div>
       </section>
-     
     </div>
   );
 }

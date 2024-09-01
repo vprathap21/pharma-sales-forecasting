@@ -15,7 +15,7 @@ export const ButtonsCard = ({
     <button
       onClick={onClick}
       className={cn(
-        "p-4 bg-transparent rounded-md  transition-colors duration-200",
+        "p-4 bg-transparent rounded-md transition-colors duration-200",
         className
       )}
     >
