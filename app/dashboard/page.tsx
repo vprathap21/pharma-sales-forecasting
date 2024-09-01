@@ -16,6 +16,8 @@ import Predictions from "@/components/Predictions";
 import ForecastingSection from "@/components/ForecastingSection";
 import Inventory from "@/components/Inventory";
 import dashboard3 from "@/public/dasboard1.jpg"; // Corrected the typo in the import statement
+import DrugInfoList from "@/components/DrugInfoList";
+import  CardSpotlightDemo  from "@/components/ui/CardSpotlightDemo";
 
 interface InternalLinkProps {
   link: Links;
@@ -36,7 +38,7 @@ export default function SidebarDemo() {
 
   const links: LinkItem[] = [
     {
-      label: "Sales Dashboard",
+      label: "Drugs Info",
       href: "#",
       icon: (
         <IconChartBar className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -59,14 +61,14 @@ export default function SidebarDemo() {
       ),
       section: "forecasting",
     },
-    {
-      label: "Inventory Management",
-      href: "#",
-      icon: (
-        <IconPackage className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-      section: "inventory",
-    },
+    // {
+    //   label: "Inventory Management",
+    //   href: "#",
+    //   icon: (
+    //     <IconPackage className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+    //   ),
+    //   section: "inventory",
+    // },
     {
       label: "Logout",
       href: "#",
@@ -156,13 +158,8 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
     <div className="flex flex-1 flex-col md:flex-row overflow-y-auto">
       <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-4 flex-1 w-full min-h-screen">
         {activeSection === "dashboard" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[...new Array(4)].map((_, i) => (
-              <div
-                key={"first-array" + i}
-                className="h-24 w-full rounded-lg bg-gray-100 dark:bg-neutral-800 animate-pulse"
-              ></div>
-            ))}
+          <div className="">
+            <DrugInfoList />
           </div>
         )}
 

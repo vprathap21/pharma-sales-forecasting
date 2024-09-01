@@ -9,38 +9,56 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
 } from "chart.js";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface PredictionGraphProps {
-  predictions: Record<string, number>;
+  predictions: Record<string, [string, number][]>;
   predictionType: string;
 }
 
 export default function PredictionGraph({ predictions, predictionType }: PredictionGraphProps) {
-  const labels = Object.keys(predictions);
-  const values = Object.values(predictions);
+  // Extract labels from the first drug's prediction dates (assuming all drugs share the same dates)
+  const labels = predictions[Object.keys(predictions)[0]].map(([date]) => date);
+
+  // Prepare datasets for each drug
+  const datasets = Object.keys(predictions).map((drug) => {
+    const values = predictions[drug].map(([, value]) => value);
+
+    return {
+      label: drug,
+      data: values,
+      borderColor: "rgba(75, 192, 192, 1)",
+      backgroundColor: "rgba(75, 192, 192, 0.2)",
+      fill: true,
+      pointRadius: (context: any) => {
+        const index = context.dataIndex;
+        return index === labels.length - 1 ? 5 : 3; // Larger radius for the last point
+      },
+      pointBorderColor: (context: any) => {
+        const index = context.dataIndex;
+        return index === labels.length - 1 ? "red" : "rgba(75, 192, 192, 1)";
+      },
+      pointBackgroundColor: (context: any) => {
+        const index = context.dataIndex;
+        return index === labels.length - 1 ? "red" : "rgba(75, 192, 192, 1)";
+      },
+    };
+  });
 
   const data = {
     labels: labels,
-    datasets: [
-      {
-        label: `Predictions for ${predictionType.charAt(0).toUpperCase() + predictionType.slice(1)} Sales`,
-        data: values,
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        fill: true,
-      },
-    ],
+    datasets: datasets,
   };
 
-  const options = {
+  const options: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false, // Allows the chart to resize more flexibly
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "top",
         labels: {
           font: {
             size: window.innerWidth < 768 ? 10 : 14, // Adjust font size based on screen width

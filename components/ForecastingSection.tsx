@@ -33,8 +33,10 @@ export default function ForecastingSection() {
       });
 
       const data = await response.json();
+   
       setPredictions(data);
-      setLoading(false);
+      console.log(predictions)
+;      setLoading(false);
     } catch (error) {
       console.error("Error fetching predictions:", error);
       setLoading(false);
@@ -85,12 +87,12 @@ export default function ForecastingSection() {
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4 text-white">Predictions:</h2>
           <div className="bg-white dark:bg-neutral-800 p-4 rounded-lg shadow-lg">
-            <PredictionsTable predictions={predictions} />
+            <PredictionsTable predictions={predictions?.last_predictions} />
           </div>
 
           {/* Add the interactive graph */}
           <div className="mt-8 w-full">
-            <PredictionGraph predictions={predictions} predictionType={predictionType} />
+            <PredictionGraph predictions={predictions?.trend_data} predictionType={predictionType} />
           </div>
         </div>
       )}
