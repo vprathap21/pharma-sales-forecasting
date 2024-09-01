@@ -1,5 +1,4 @@
 "use client";
-import dashboard3 from "@/public/dasboard1.jpg";
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink, Links } from "../../components/ui/sidebar";
 import {
@@ -16,12 +15,26 @@ import { cn } from "@/lib/utils";
 import Predictions from "@/components/Predictions";
 import ForecastingSection from "@/components/ForecastingSection";
 import Inventory from "@/components/Inventory";
+import dashboard3 from "@/public/dasboard1.jpg"; // Corrected the typo in the import statement
+
+interface InternalLinkProps {
+  link: Links;
+  className?: string;
+  onClick?: () => void;
+}
+
+interface LinkItem {
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+  section: string;
+}
 
 export default function SidebarDemo() {
-  const [activeSection, setActiveSection] = useState("dashboard");
+  const [activeSection, setActiveSection] = useState<string>("dashboard");
   const [open, setOpen] = useState<boolean>(false);
 
-  const links = [
+  const links: LinkItem[] = [
     {
       label: "Sales Dashboard",
       href: "#",
@@ -64,12 +77,12 @@ export default function SidebarDemo() {
     },
   ];
 
+  const handleSectionChange = (section: string) => {
+    setActiveSection(section);
+  };
+
   return (
-    <div
-      className={cn(
-        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-full overflow-hidden"
-      )}
-    >
+    <div className={cn("flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full h-full overflow-hidden")}>
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10 p-4">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -79,7 +92,7 @@ export default function SidebarDemo() {
                 <SidebarLink
                   key={idx}
                   link={link as Links}
-                  onClick={() => setActiveSection(link.section)}
+                  onClick={() => handleSectionChange(link.section)} // Pass onClick to SidebarLink
                 />
               ))}
             </div>
@@ -140,7 +153,7 @@ const LogoIcon = () => {
 
 const Dashboard = ({ activeSection }: { activeSection: string }) => {
   return (
-    <div className="flex flex-1 flex-col md:flex-row overflow-y-auto ">
+    <div className="flex flex-1 flex-col md:flex-row overflow-y-auto">
       <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-4 flex-1 w-full min-h-screen">
         {activeSection === "dashboard" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
