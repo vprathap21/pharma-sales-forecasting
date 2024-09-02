@@ -158,21 +158,25 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
     <div className="flex flex-1 flex-col md:flex-row overflow-y-auto">
       <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-4 flex-1 w-full min-h-screen">
         {activeSection === "dashboard" && (
+          <div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-white">
+            Drug Category Information
+          </h1>
           <div className="">
             <DrugInfoList />
+          </div>
           </div>
         )}
 
         {activeSection === "insights" && (
           <div className="h-auto antialiased min-h-screen">
             <section className="container mx-auto py-4 px-4 sm:px-6 md:px-8">
-              <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-white">
-                Sales Trends for Top 3 Most Sold Drugs
-              </h1>
+             
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="shadow-lg rounded-lg overflow-hidden">
+                
                   <h2 className="text-2xl font-semibold mb-4 text-center text-gray-200">
-                    Monthly Sales Trends
+                  Monthly  Sales Trends for Top 3 Most Sold Drugs
                   </h2>
                   <div className="flex justify-center p-4 bg-white dark:bg-neutral-800 rounded-lg">
                     <iframe
